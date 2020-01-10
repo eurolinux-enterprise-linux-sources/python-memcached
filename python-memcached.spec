@@ -2,7 +2,7 @@
 
 Name:           python-memcached
 Version:        1.43
-Release:        5.3%{?dist}
+Release:        6%{?dist}
 Summary:        A Python memcached client library
 
 Group:          Development/Languages
@@ -15,6 +15,9 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  python-devel, python-setuptools
 
+# Detect server family in get_stats() to prevent throwing exception
+Patch0:         python-memcached-1.43-get_stats-exception-fix.patch
+
 %description
 This software is a 100% Python interface to the memcached memory cache
 daemon.  It is the client side software which allows storing values in one
@@ -24,6 +27,7 @@ for more information.
 %prep
 %setup -q -n %{name}-%{version}
 cp %{SOURCE1} .
+%patch0 -p1
 
 %build
 %{__python} setup.py build
@@ -43,6 +47,10 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/python_memcached-%{version}-py*.egg-info/
 
 %changelog
+* Wed Feb 15 2012 Radek Novacek <rnovacek@redhat.com> 1.43-6
+- Detect server family in get_stats() to prevent throwing exception
+- Resolves: rhbz#789494
+
 * Tue Jul 20 2010 Radek Novacek <rnovacek@redhat.com> - 1.43-5.3
 - Added text of the Python License
 - Resolves: #615517
