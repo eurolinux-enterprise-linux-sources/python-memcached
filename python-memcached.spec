@@ -2,7 +2,7 @@
 
 Name:           python-memcached
 Version:        1.48
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A Python memcached client library
 
 Group:          Development/Languages
@@ -51,6 +51,9 @@ popd
 %{python_sitelib}/python_memcached-%{version}-py*.egg-info/
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.48-4
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.48-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
